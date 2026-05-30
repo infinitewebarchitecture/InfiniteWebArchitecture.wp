@@ -711,7 +711,58 @@ footer{background:#1a1410;background-image:repeating-linear-gradient(118deg,tran
     <section class="hero">
       <div class="hero-badge">Diseño web profesional &nbsp;·&nbsp; Ecuador</div>
       <div class="hero-divider"></div>
-      <h1>Diseñamos webs que <em>convierten</em> visitantes en clientes</h1>
+      <h1 class="hero-animated-h1">Diseñamos páginas webs<br/><span class="hero-static-suffix">que&nbsp;</span><span class="hero-typewriter" id="heroTypewriter"></span></h1>
+
+<style>
+.hero-animated-h1{line-height:1.15;}
+.hero-static-suffix{display:inline;}
+.hero-typewriter{
+  display:inline-block;
+  color:#c8a96e;
+  border-right:3px solid #c8a96e;
+  white-space:nowrap;
+  overflow:hidden;
+  vertical-align:bottom;
+  animation:tw-blink .7s step-end infinite;
+  min-width:2px;
+}
+@keyframes tw-blink{0%,100%{border-color:#c8a96e;}50%{border-color:transparent;}}
+</style>
+
+<script>
+(function(){
+  var words = ["convierten.", "cautivan.", "venden.", "fidelizan.", "destacan."];
+  var el = document.getElementById("heroTypewriter");
+  if(!el) return;
+  var wi = 0, ci = 0, deleting = false, pause = 0;
+  var TYPE_SPEED = 80, DELETE_SPEED = 45, PAUSE_END = 1800, PAUSE_START = 300;
+  function tick(){
+    var word = words[wi];
+    if(!deleting){
+      ci++;
+      el.textContent = word.slice(0, ci);
+      if(ci === word.length){
+        deleting = true;
+        pause = PAUSE_END;
+        setTimeout(tick, pause); return;
+      }
+      setTimeout(tick, TYPE_SPEED);
+    } else {
+      ci--;
+      el.textContent = word.slice(0, ci);
+      if(ci === 0){
+        deleting = false;
+        wi = (wi + 1) % words.length;
+        pause = PAUSE_START;
+        setTimeout(tick, pause); return;
+      }
+      setTimeout(tick, DELETE_SPEED);
+    }
+  }
+  // Start after page loads
+  setTimeout(tick, 600);
+})();
+</script>
       <p>En Infinite Web Architecture creamos experiencias digitales a medida — elegantes, rápidas y orientadas a resultados reales para tu negocio.</p>
       <div class="hero-btns">
         <button class="btn-primary" onclick="showPage('servicios')">Ver servicios</button>
@@ -994,8 +1045,8 @@ footer{background:#1a1410;background-image:repeating-linear-gradient(118deg,tran
       </div>
       <div class="footer-col">
         <h4>Contacto</h4>
-        <a>hola@infinitewebarchitecture.com</a><a>+593 99 000 0000</a>
-        <a>Quito, Ecuador</a><a>WhatsApp: L–V 9h–18h</a>
+        <a>infinitewebarchitecture@gmail.com</a><a>0958876220</a>
+        <a>Quito, Guayaquil, Manta, Ecuador</a><a>Atención en todo el país</a>
       </div>
     </div>
     <div class="footer-bottom">
