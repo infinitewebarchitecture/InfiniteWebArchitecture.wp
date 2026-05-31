@@ -225,12 +225,12 @@ canvas#techCanvas{position:absolute;inset:0;width:100%;height:100%;pointer-event
 .hint{
   position:absolute;bottom:44px;
   font-size:10px;letter-spacing:4px;text-transform:uppercase;
-  color:rgba(80,48,20,0.65);
+  color:rgba(80,50,20,0.85);
   font-family:'Playfair Display',serif;
   display:flex;align-items:center;gap:12px;
   animation:pulse 2.8s ease-in-out 2s infinite both;z-index:4;
   pointer-events:none;
-}
+font-weight:500;}
 .hint::before,.hint::after{content:'';width:36px;height:1px;background:rgba(80,48,20,0.3);}
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(40px);}to{opacity:1;transform:translateY(0);}}
@@ -465,8 +465,8 @@ footer{background:#1a1410;background-image:repeating-linear-gradient(118deg,tran
 .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:56px;}
 .footer-brand{display:flex;align-items:baseline;gap:7px;margin-bottom:18px;}
 .footer-brand .brand-infinite{font-size:20px;}
-.footer-brand .brand-sub{color:#6a5a48;}
-.footer-desc{font-size:13px;color:#6a5a48;line-height:1.75;max-width:260px;font-weight:300;}
+.footer-brand .brand-sub{color:#6a5a48;transition:color .3s;}.footer-brand:hover .brand-sub{color:#c8a96e;}.footer-brand:hover .brand-infinite{color:#e8c98e;}
+.footer-desc{font-size:13px;color:#6a5a48;line-height:1.75;max-width:260px;font-weight:300;transition:color .3s;}.footer-desc:hover{color:#c8a96e;}
 .footer-col h4{font-size:9px;letter-spacing:3px;color:#c8a96e;text-transform:uppercase;margin-bottom:18px;font-family:'Inter',sans-serif;}
 .footer-col a{display:block;font-size:13px;color:#5a4a38;cursor:pointer;margin-bottom:12px;text-decoration:none;transition:color .2s;font-weight:300;}
 .footer-col a:hover{color:#e8c98e;}
@@ -1058,9 +1058,14 @@ footer{background:#1a1410;background-image:repeating-linear-gradient(118deg,tran
   <footer>
     <div class="footer-grid">
       <div>
-        <div class="footer-brand">
-          <span class="brand-infinite" style="font-size:20px;">INFINITE</span>
-          <span class="brand-sub" style="font-size:9px;">WEB ARCHITECTURE</span>
+        <div class="footer-brand" style="margin-bottom:14px;">
+          <img src="data:image/webp;base64,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"
+               alt="Infinite Web Architecture"
+               title="Volver al inicio"
+               onclick="goToSplash()"
+               style="height:68px;width:auto;cursor:pointer;transition:opacity .25s,transform .25s;border-radius:8px;"
+               onmouseover="this.style.opacity='0.82';this.style.transform='scale(1.03)'"
+               onmouseout="this.style.opacity='1';this.style.transform='scale(1)'"/>
         </div>
         <p class="footer-desc">Arquitectura web de lujo para empresas que quieren destacar online. Basados en Quito, atendemos clientes en todo Ecuador y Latinoamérica.</p>
       </div>
@@ -1358,6 +1363,32 @@ function sendForm(){
     btn.textContent="Enviar mensaje";btn.style.cssText="";
     ["inp-name","inp-email","inp-phone","inp-msg"].forEach(function(id){const el=document.getElementById(id);if(el)el.value="";});
   },3000);
+}
+
+// ── Retorno a pantalla de acceso ──────────────────
+function goToSplash(){
+  var site   = document.getElementById("site");
+  var splash = document.getElementById("splash");
+  if(!site || !splash) return;
+  // Fade out site
+  site.style.transition = "opacity 0.4s";
+  site.style.opacity = "0";
+  setTimeout(function(){
+    site.style.display  = "none";
+    site.style.opacity  = "1";
+    site.style.transition = "";
+    // Reset splash
+    splash.classList.remove("exiting");
+    splash.style.display  = "flex";
+    splash.style.opacity  = "0";
+    splash.style.transition = "opacity 0.5s";
+    setTimeout(function(){
+      splash.style.opacity = "1";
+    }, 20);
+    setTimeout(function(){
+      splash.style.transition = "";
+    }, 600);
+  }, 400);
 }
 </script>
 </body>
