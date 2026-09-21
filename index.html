@@ -505,13 +505,19 @@ footer{background:#0e0205;background-image:repeating-linear-gradient(118deg,tran
 .nav-mobile{
   display:none;
   position:fixed;inset:0;
-  background:rgba(250,240,240,0.98);
-  backdrop-filter:blur(16px);
-  z-index:150;
+  background:#ffffff;
+  z-index:9998;
   flex-direction:column;
-  align-items:center;justify-content:center;
-  gap:0;
-  animation:fadeIn .25s ease both;
+  align-items:flex-start;
+  justify-content:center;
+  padding:80px 40px 48px;
+  transform:translateX(100%);
+  transition:transform .35s cubic-bezier(.4,0,.2,1);
+  overflow-y:auto;
+}
+.nav-mobile.open{
+  display:flex;
+  transform:translateX(0);
 }
 .nav-mobile.open{display:flex;}
 .nav-mobile a{
@@ -693,14 +699,39 @@ footer{background:#0e0205;background-image:repeating-linear-gradient(118deg,tran
   </nav>
 
   <!-- Mobile nav overlay -->
-  <div class="nav-mobile" id="mobileNav">
-    <a onclick="showPage('home');closeMobileNav();" data-page="home">Inicio</a>
-    <a onclick="showPage('servicios');closeMobileNav();" data-page="servicios">Servicios</a>
-    <a onclick="showPage('portafolio');closeMobileNav();" data-page="portafolio">Sectores</a>
-    <a onclick="showPage('nosotros');closeMobileNav();" data-page="nosotros">Nosotros</a>
-    <a onclick="showPage('paquetes');closeMobileNav();" data-page="paquetes">Paquetes</a>
-    <a onclick="showPage('contacto');closeMobileNav();" data-page="contacto">Contacto</a>
-    <button class="nav-mobile-cta" onclick="showPage('contacto');closeMobileNav();">Iniciar proyecto</button>
+  <div class="nav-mobile" id="mobileNav" role="dialog" aria-label="Menú de navegación">
+    <button class="nav-mobile-close" onclick="closeMobileNav()" aria-label="Cerrar menú">✕</button>
+    <div class="nav-mobile-logo">
+      <span style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#a70d2c;letter-spacing:3px;">INFINITE</span>
+      <span style="font-family:'Playfair Display',serif;font-size:9px;color:#7a0820;letter-spacing:4px;display:block;margin-top:2px;">WEB ARCHITECTURE</span>
+    </div>
+    <nav class="nav-mobile-links">
+      <a onclick="showPage('home');closeMobileNav();" data-page="home">
+        <span class="nmlink-num">01</span>Inicio
+      </a>
+      <a onclick="showPage('servicios');closeMobileNav();" data-page="servicios">
+        <span class="nmlink-num">02</span>Servicios
+      </a>
+      <a onclick="showPage('portafolio');closeMobileNav();" data-page="portafolio">
+        <span class="nmlink-num">03</span>Sectores
+      </a>
+      <a onclick="showPage('nosotros');closeMobileNav();" data-page="nosotros">
+        <span class="nmlink-num">04</span>Nosotros
+      </a>
+      <a onclick="showPage('paquetes');closeMobileNav();" data-page="paquetes">
+        <span class="nmlink-num">05</span>Paquetes
+      </a>
+      <a onclick="showPage('contacto');closeMobileNav();" data-page="contacto">
+        <span class="nmlink-num">06</span>Contacto
+      </a>
+    </nav>
+    <button class="nav-mobile-cta" onclick="showPage('contacto');closeMobileNav();">
+      Iniciar Proyecto →
+    </button>
+    <div class="nav-mobile-footer">
+      <span>infinitewebarchitecture@gmail.com</span>
+      <span>0958 876 220</span>
+    </div>
   </div>
 
   <!-- ======== INICIO ======== -->
@@ -1443,6 +1474,179 @@ nav {
 @keyframes ripple-anim{
   to{ transform:scale(4); opacity:0; }
 }
+
+/* ════════════════════════════════════════
+   MENÚ MÓVIL — VERSIÓN PREMIUM
+   ════════════════════════════════════════ */
+
+/* Hamburger mejorado */
+.hamburger{
+  display:none;
+  flex-direction:column;
+  gap:6px;
+  cursor:pointer;
+  padding:8px;
+  background:none;
+  border:none;
+  z-index:9999;
+  position:relative;
+}
+.hamburger span{
+  display:block;
+  width:26px;
+  height:2px;
+  background:#a70d2c;
+  border-radius:2px;
+  transition:transform .3s ease, opacity .3s ease, width .3s ease;
+  transform-origin:center;
+}
+.hamburger.open span:nth-child(1){
+  transform:translateY(8px) rotate(45deg);
+}
+.hamburger.open span:nth-child(2){
+  opacity:0;
+  width:0;
+}
+.hamburger.open span:nth-child(3){
+  transform:translateY(-8px) rotate(-45deg);
+}
+
+/* Botón cerrar */
+.nav-mobile-close{
+  position:absolute;
+  top:20px;
+  right:24px;
+  background:none;
+  border:none;
+  font-size:24px;
+  color:#a70d2c;
+  cursor:pointer;
+  padding:8px;
+  line-height:1;
+  transition:transform .2s;
+}
+.nav-mobile-close:hover{ transform:rotate(90deg); }
+
+/* Logo en mobile nav */
+.nav-mobile-logo{
+  margin-bottom:40px;
+  padding-bottom:28px;
+  border-bottom:2px solid rgba(167,13,44,0.12);
+  width:100%;
+}
+
+/* Links del mobile nav */
+.nav-mobile-links{
+  display:flex;
+  flex-direction:column;
+  width:100%;
+  gap:0;
+  margin-bottom:36px;
+}
+.nav-mobile-links a{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  padding:18px 0;
+  border-bottom:1px solid rgba(167,13,44,0.08);
+  font-family:'Playfair Display',serif;
+  font-size:26px;
+  font-weight:700;
+  color:#1a0508;
+  text-decoration:none;
+  cursor:pointer;
+  transition:color .2s, padding-left .2s;
+  position:relative;
+  overflow:hidden;
+}
+.nav-mobile-links a:hover,
+.nav-mobile-links a.active{
+  color:#a70d2c;
+  padding-left:8px;
+}
+.nmlink-num{
+  font-family:'Inter',sans-serif;
+  font-size:11px;
+  font-weight:400;
+  color:#a70d2c;
+  letter-spacing:1px;
+  min-width:24px;
+  opacity:0.7;
+}
+
+/* CTA button en mobile nav */
+.nav-mobile-cta{
+  background:#a70d2c;
+  color:#fff;
+  border:none;
+  padding:16px 32px;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  border-radius:4px;
+  cursor:pointer;
+  width:100%;
+  transition:background .2s, transform .2s;
+  font-family:'Inter',sans-serif;
+  margin-bottom:28px;
+}
+.nav-mobile-cta:hover{
+  background:#7a0820;
+  transform:translateY(-2px);
+}
+
+/* Footer info en mobile nav */
+.nav-mobile-footer{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  border-top:1px solid rgba(167,13,44,0.1);
+  padding-top:20px;
+  width:100%;
+}
+.nav-mobile-footer span{
+  font-size:12px;
+  color:#7a3045;
+  font-family:'Inter',sans-serif;
+  letter-spacing:.5px;
+}
+
+/* Overlay oscuro detrás */
+.nav-mobile-overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.4);
+  z-index:9997;
+  backdrop-filter:blur(2px);
+}
+.nav-mobile-overlay.open{ display:block; }
+
+/* ═══ MEDIA QUERIES ═══ */
+@media(max-width:860px){
+  .hamburger{ display:flex !important; }
+  .nav-links, .nav-cta{ display:none !important; }
+  nav{ padding:0 20px !important; height:60px !important; }
+}
+
+@media(max-width:600px){
+  .nav-mobile-links a{ font-size:22px; padding:15px 0; }
+  .nav-mobile{ padding:70px 28px 40px; }
+}
+
+@media(max-width:380px){
+  .nav-mobile-links a{ font-size:19px; }
+  .nav-mobile-logo span:first-child{ font-size:18px; }
+}
+
+/* Tablet: ajuste intermedio */
+@media(min-width:861px) and (max-width:1100px){
+  nav{ padding:0 20px !important; }
+  .nav-links{ gap:14px !important; }
+  .nav-links a{ font-size:10px !important; letter-spacing:1px !important; }
+  .nav-cta{ font-size:10px !important; padding:8px 14px !important; }
+}
 </style>
 <div class="svc-grid">
   <div class="svc-card red" onclick="svcClick(this,event)"><div class="svc-icon">⬡</div><h3>Diseño web a medida</h3><p>Sitios únicos diseñados desde cero, adaptados a tu marca y objetivos. Sin plantillas genéricas.</p><div class="svc-price">Desde $350</div></div>
@@ -2040,19 +2244,31 @@ function showPage(id){
 }
 
 function toggleMobileNav(){
-  const nav=document.getElementById("mobileNav");
-  const burger=document.getElementById("hamburger");
-  nav.classList.toggle("open");
-  burger.classList.toggle("open");
-  document.body.style.overflow=nav.classList.contains("open")?"hidden":"";
+  const nav=document.getElementById('mobileNav');
+  const burger=document.getElementById('hamburger');
+  const overlay=document.getElementById('mobileOverlay');
+  const isOpen=nav.classList.contains('open');
+  if(isOpen){
+    nav.classList.remove('open');
+    burger.classList.remove('open');
+    if(overlay) overlay.classList.remove('open');
+    document.body.style.overflow='';
+  } else {
+    nav.classList.add('open');
+    burger.classList.add('open');
+    if(overlay) overlay.classList.add('open');
+    document.body.style.overflow='hidden';
+  }
 }
 
 function closeMobileNav(){
-  const nav=document.getElementById("mobileNav");
-  const burger=document.getElementById("hamburger");
-  nav.classList.remove("open");
-  burger.classList.remove("open");
-  document.body.style.overflow="";
+  const nav=document.getElementById('mobileNav');
+  const burger=document.getElementById('hamburger');
+  const overlay=document.getElementById('mobileOverlay');
+  nav.classList.remove('open');
+  burger.classList.remove('open');
+  if(overlay) overlay.classList.remove('open');
+  document.body.style.overflow='';
 }
 
 // =====================================================
