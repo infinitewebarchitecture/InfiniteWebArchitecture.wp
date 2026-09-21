@@ -360,7 +360,7 @@ nav{
 .sector-overlay h3{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:#f5e8ea;margin-bottom:4px;}
 .sector-overlay p{font-size:12px;color:#8b0a2a;line-height:1.5;max-height:0;overflow:hidden;transition:max-height .4s ease;letter-spacing:.3px;}
 .sector-card:hover .sector-overlay p{max-height:60px;}
-.sector-tag{display:inline-block;border:1px solid rgba(139,10,42,0.5);color:#c41230;font-size:9px;letter-spacing:2px;padding:3px 10px;margin-bottom:8px;text-transform:uppercase;}
+.sector-tag{display:inline-block;border:1px solid rgba(255,255,255,0.6);color:#ffffff;font-size:9px;letter-spacing:2px;padding:3px 10px;margin-bottom:8px;text-transform:uppercase;background:rgba(167,13,44,0.55);}
 
 /* =====================
    TESTIMONIALS
@@ -1080,8 +1080,8 @@ footer{
 .svc-title, .svc-card h3{ color:#1a0508 !important; }
 .svc-desc, .svc-card p{ color:#3a0f18 !important; }
 /* Sector cards */
-.sector-name, .sector-card h3{ color:#1a0508 !important; }
-.sector-card p{ color:#3a0f18 !important; }
+.sector-name, .sector-card h3{ color:#ffffff !important; text-shadow:0 2px 6px rgba(0,0,0,0.5); }
+.sector-card p{ color:rgba(255,255,255,0.9) !important; text-shadow:0 1px 4px rgba(0,0,0,0.4); }
 /* Process steps */
 .step-title, .step h3{ color:#1a0508 !important; }
 .step-desc, .step p{ color:#3a0f18 !important; }
@@ -1647,6 +1647,145 @@ nav {
   .nav-links a{ font-size:10px !important; letter-spacing:1px !important; }
   .nav-cta{ font-size:10px !important; padding:8px 14px !important; }
 }
+
+/* ══ HAMBURGER FIX DEFINITIVO ══ */
+/* Asegurar que mobile nav funciona con class "open" */
+#mobileNav {
+  display: none;
+  position: fixed !important;
+  inset: 0 !important;
+  background: #ffffff !important;
+  z-index: 9998 !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+  padding: 80px 36px 48px !important;
+  transform: translateX(100%) !important;
+  transition: transform .35s cubic-bezier(.4,0,.2,1) !important;
+  overflow-y: auto !important;
+}
+#mobileNav.open {
+  display: flex !important;
+  transform: translateX(0) !important;
+}
+/* Links dentro del mobile nav */
+#mobileNav .nav-mobile-links {
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+  gap: 0 !important;
+  margin-bottom: 32px !important;
+}
+#mobileNav .nav-mobile-links a {
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+  padding: 16px 0 !important;
+  border-bottom: 1px solid rgba(167,13,44,0.1) !important;
+  font-family: 'Playfair Display', serif !important;
+  font-size: 24px !important;
+  font-weight: 700 !important;
+  color: #1a0508 !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+  transition: color .2s, padding-left .2s !important;
+  background: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-top: none !important;
+}
+#mobileNav .nav-mobile-links a:hover,
+#mobileNav .nav-mobile-links a.active {
+  color: #a70d2c !important;
+  padding-left: 10px !important;
+}
+#mobileNav .nmlink-num {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 11px !important;
+  color: #a70d2c !important;
+  opacity: 0.65 !important;
+  min-width: 22px !important;
+  font-weight: 400 !important;
+}
+#mobileNav .nav-mobile-logo {
+  margin-bottom: 32px !important;
+  padding-bottom: 24px !important;
+  border-bottom: 2px solid rgba(167,13,44,0.15) !important;
+  width: 100% !important;
+}
+#mobileNav .nav-mobile-cta {
+  background: #a70d2c !important;
+  color: #fff !important;
+  border: none !important;
+  padding: 15px 28px !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  letter-spacing: 2px !important;
+  text-transform: uppercase !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+  width: 100% !important;
+  margin-bottom: 24px !important;
+  font-family: 'Inter', sans-serif !important;
+}
+#mobileNav .nav-mobile-footer {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+  border-top: 1px solid rgba(167,13,44,0.1) !important;
+  padding-top: 18px !important;
+  width: 100% !important;
+}
+#mobileNav .nav-mobile-footer span {
+  font-size: 12px !important;
+  color: #7a3045 !important;
+}
+.nav-mobile-close {
+  position: absolute !important;
+  top: 18px !important;
+  right: 20px !important;
+  background: none !important;
+  border: none !important;
+  font-size: 26px !important;
+  color: #a70d2c !important;
+  cursor: pointer !important;
+  padding: 6px !important;
+  line-height: 1 !important;
+  z-index: 9999 !important;
+}
+/* Hamburger */
+#hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+  padding: 8px;
+  background: none;
+  border: none;
+  z-index: 9999;
+}
+#hamburger span {
+  display: block;
+  width: 25px;
+  height: 2px;
+  background: #a70d2c;
+  border-radius: 2px;
+  transition: transform .3s, opacity .3s, width .3s;
+  transform-origin: center;
+}
+#hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+#hamburger.open span:nth-child(2) { opacity: 0; width: 0; }
+#hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+@media(max-width:860px){
+  #hamburger { display: flex !important; }
+  .nav-links, .nav-cta { display: none !important; }
+  nav { padding: 0 18px !important; height: 60px !important; }
+}
+@media(min-width:861px){
+  #mobileNav { display: none !important; }
+  #hamburger { display: none !important; }
+}
 </style>
 <div class="svc-grid">
   <div class="svc-card red" onclick="svcClick(this,event)"><div class="svc-icon">⬡</div><h3>Diseño web a medida</h3><p>Sitios únicos diseñados desde cero, adaptados a tu marca y objetivos. Sin plantillas genéricas.</p><div class="svc-price">Desde $350</div></div>
@@ -1695,12 +1834,12 @@ function svcClick(card, e){
       <div class="sec-sub">Cada sector tiene necesidades únicas. Conocemos el lenguaje digital de tu industria.</div>
       <div class="gold-line"></div>
       <div class="sectors-grid">
-        <div class="sector-card" style="height:280px;"><img src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=700&q=80" alt="Hospital" loading="lazy"/><div class="sector-overlay"><div class="sector-tag">Salud</div><h3>Hospitales y Clínicas</h3><p>Citas online, directorios médicos y portales que generan confianza desde el primer clic.</p></div></div>
-        <div class="sector-card" style="height:280px;"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=700&q=80" alt="Restaurante" loading="lazy"/><div class="sector-overlay"><div class="sector-tag">Gastronomía</div><h3>Restaurantes y Cafés</h3><p>Menús atractivos, reservas online y galería que aumenta las visitas.</p></div></div>
-        <div class="sector-card" style="height:280px;"><img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=700&q=80" alt="Gimnasio" loading="lazy"/><div class="sector-overlay"><div class="sector-tag">Fitness</div><h3>Gimnasios y Estudios</h3><p>Horarios, membresías y galería motivacional para convertir visitantes en socios.</p></div></div>
-        <div class="sector-card" style="height:280px;"><img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=700&q=80" alt="Dental" loading="lazy"/><div class="sector-overlay"><div class="sector-tag">Odontología</div><h3>Clínicas Dentales</h3><p>Antes/después, agenda de citas y especialistas para inspirar confianza.</p></div></div>
-        <div class="sector-card" style="height:280px;"><img src="https://i.ibb.co/cctFH6P3/image.jpg" alt="Médico" loading="lazy"/><div class="sector-overlay"><div class="sector-tag">Medicina</div><h3>Consultorios Médicos</h3><p>Perfiles de especialistas, citas en línea y portal de resultados.</p></div></div>
-        <div class="sector-card" style="height:280px;"><img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=700&q=80" alt="Jurídico" loading="lazy"/><div class="sector-overlay"><div class="sector-tag">Legal</div><h3>Estudios Jurídicos</h3><p>Áreas de práctica, abogados y consulta inicial online para captar clientes.</p></div></div>
+        <div class="sector-card" style="height:280px;"><img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=700&q=80" alt="Retail" loading="lazy"/><div class="sector-overlay"><div class="sector-tag">Comercio</div><h3>Tiendas y Retail</h3><p>Catálogos digitales, carrito de compras y experiencias que convierten visitantes en compradores.</p></div></div>
+        <div class="sector-card" style="height:280px;"><img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=700&q=80" alt="Construcción" loading="lazy"/><div class="sector-overlay"><div class="sector-tag">Construcción</div><h3>Inmobiliarias y Constructoras</h3><p>Portafolios de proyectos, cotizadores online y galerías de obras terminadas.</p></div></div>
+        <div class="sector-card" style="height:280px;"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=700&q=80" alt="Belleza" loading="lazy"/><div class="sector-overlay"><div class="sector-tag">Belleza</div><h3>Spas y Salones</h3><p>Catálogos de servicios, reservas online y galería de transformaciones que enamoran.</p></div></div>
+        <div class="sector-card" style="height:280px;"><img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=700&q=80" alt="Educación" loading="lazy"/><div class="sector-overlay"><div class="sector-tag">Educación</div><h3>Academias y Colegios</h3><p>Plataformas de inscripción, portales de estudiantes y comunicación institucional efectiva.</p></div></div>
+        <div class="sector-card" style="height:280px;"><img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=700&q=80" alt="Tecnología" loading="lazy"/><div class="sector-overlay"><div class="sector-tag">Tecnología</div><h3>Startups y Software</h3><p>Landing pages de alto impacto, demos interactivos y captación de leads especializados.</p></div></div>
+        <div class="sector-card" style="height:280px;"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=700&q=80" alt="Profesionales" loading="lazy"/><div class="sector-overlay"><div class="sector-tag">Profesionales</div><h3>Consultores y Coaches</h3><p>Marca personal sólida, testimonios de clientes y agenda de sesiones totalmente online.</p></div></div>
       </div>
     </section>
 
