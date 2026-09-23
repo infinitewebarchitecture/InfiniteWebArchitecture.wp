@@ -506,7 +506,7 @@ footer{background:#0e0205;background-image:repeating-linear-gradient(118deg,tran
   display:none;
   position:fixed;inset:0;
   background:#ffffff;
-  z-index:9998;
+  z-index:100000;
   flex-direction:column;
   align-items:flex-start;
   justify-content:center;
@@ -1655,7 +1655,7 @@ nav {
   position: fixed !important;
   inset: 0 !important;
   background: #ffffff !important;
-  z-index: 9998 !important;
+  z-index: 100000 !important;
   flex-direction: column !important;
   align-items: flex-start !important;
   justify-content: flex-start !important;
@@ -1785,6 +1785,31 @@ nav {
 @media(min-width:861px){
   #mobileNav { display: none !important; }
   #hamburger { display: none !important; }
+}
+
+/* Refuerzo: títulos de las tarjetas de Sectores siempre en blanco */
+.sector-card .sector-overlay h3{
+  color:#ffffff !important;
+}
+
+/* Corrección: la regla general "nav{...}" (barra superior) también
+   alcanzaba al <nav class="nav-mobile-links"> de dentro del menú móvil
+   por ser ambos etiquetas <nav>, dejándolo fijo y pegado arriba,
+   encimado con el logo. Se restablece su flujo normal dentro del panel. */
+#mobileNav .nav-mobile-links{
+  position:static !important;
+  top:auto !important;
+  left:auto !important;
+  right:auto !important;
+  height:auto !important;
+  z-index:auto !important;
+  padding:0 !important;
+  background:none !important;
+  border-bottom:none !important;
+  backdrop-filter:none !important;
+  box-shadow:none !important;
+  justify-content:flex-start !important;
+  flex-wrap:wrap !important;
 }
 </style>
 <div class="svc-grid">
